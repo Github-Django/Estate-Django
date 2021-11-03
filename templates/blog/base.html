@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+{% load base_tags %}
+{% load static %}
+<html class="no-js">
+<head>
+
+    <!-- Basic Page Needs
+    ================================================== -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title> {% block title %}{% endblock %} رفسنجان ملک </title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="">
+    <!-- Mobile Specific Metas
+    ================================================== -->
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="format-detection" content="telephone=no">
+    <!-- CSS
+    ================================================== -->
+    <link href='{% static "blog/css/bootstrap.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "blog/css/style.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "blog/plugins/prettyphoto/css/prettyPhoto.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "blog/plugins/owl-carousel/css/owl.carousel.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "blog/plugins/owl-carousel/css/owl.theme.css" %}' rel="stylesheet" type="text/css">
+    <!-- Color Style -->
+    <link class="alt" href='{% static "blog/colors/color1.css" %}' rel="stylesheet" type="text/css">
+    <link href='{% static "blog/style-switcher/css/style-switcher.css" %}' rel="stylesheet" type="text/css">
+    <!-- SCRIPTS
+    ================================================== -->
+    <script src='{% static "blog/js/modernizr.js" %}'></script><!-- Modernizr -->
+    <!-- FAVICON
+    ================================================== -->
+    <link rel='{% static "blog/shortcut icon" %}' type="image/png" href="images/favicon.png"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}"/>
+    <link href="{% static 'blog/css/rtl.css' %}" rel="stylesheet">
+
+</head>
+<body class="home">
+<div class="body">
+    <!-- Start Site Header -->
+    <header class="site-header">
+        <div class="top-header hidden-xs">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <ul class="horiz-nav pull-left">
+                            {% if user.is_authenticated %}
+                                <li>
+                                    <a href="{% url 'logout' %}"><i
+                                            class="fa fa-user"></i> خروج
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li><a href="{% url 'register_view' %}"><i class="fa fa-check-circle"></i> ثبت نام / ورود</a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                    <div class="col-md-8 col-sm-6">
+                        <ul class="horiz-nav pull-right">
+                            <li><a href="{% url 'account:upload' %}" target="_blank"><i class="fa fa-plus-square"></i>
+                                ثبت
+                                آگهی</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="middle-header"
+             style="background-image: url('../../static/blog/style-switcher/backgrounds/patterns/pt1.png')">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4 col-sm-8 col-xs-8">
+							<h3 class="logo"><a href="{% url 'blog:home' %}"><img src="../../media/image/sdsf.png" alt="Logo"><strong>رفسنجان ملک</strong></a> </h3>
+						</div>
+                    <div class="col-md-8 col-sm-4 col-xs-4">
+                        <div class="contact-info-blocks hidden-sm hidden-xs">
+                            <div>
+                                <i class="fa fa-phone"></i> تلفن تماس
+                                <span class="ltr_text"><a href="tel:+989370780378">09370780378</a></span>
+                            </div>
+                            <div>
+                                <i class="fa fa-envelope"></i> آدرس ایمیل
+                                <span><a href="mailto:m.aliahmadi.n@gmail.com">m.aliahmadi.n@gmail.com</a></span>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <a href="#" class="visible-sm visible-xs menu-toggle"><i class="fa fa-bars"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="main-menu-wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <nav class="navigation">
+                            <ul class="sf-menu">
+                                <li><a href="{% url 'blog:home' %}">خانه</a>
+                                </li>
+
+                                <li><a href="{% url 'blog:listing' %}">املاک جدید</a></li>
+                                {% category_navbar %}
+                                {% if user.is_authenticated %}
+                                    {#                                    <li><a href="{% url 'account:profile' %}"> پروفایل </a></li>#}
+                                    <li><a href="{% url 'account:home' %}"> املاک من </a></li>
+                                {% endif %}
+                                <li><a href="{% url 'account:upload' %}">ثبت آگهی</a></li>
+                                {% if not user.is_authenticated %}
+                                    <li><a href="{% url 'register_view' %}">ثبت نام/ورود</a></li>
+                                {% else %}
+                                    <li>
+                                        <a href="{% url 'logout' %}"><i
+                                                class="fa fa-user"></i> خروج
+                                        </a>
+                                    </li>
+                                {% endif %}
+
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- End Site Header -->
+
+    {% block main %}
+    {% endblock %}
+
+
+
+    <!-- Start Site Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4 footer-widget widget">
+                    <h3 class="widgettitle">درباره رفسنجان ملک
+                    </h3>
+                    <span>
+                        رفسنجان ملک، یک سامانه تخصصی آنلاین شامل وب سایت در حوزه املاک می‌باشد که به کلیه هم شهری های رفسنجانی
+                        کمک می کند تا ملک مورد نظر خود را به راحتی پیدا کنند.
+                    </span>
+                </div>
+                <div class="col-sm-4 footer-widget widget">
+                    <h3 class="widgettitle">لینک های مفید</h3>
+                    <ul>
+                        <li><a href="{% url 'account:upload' %}">ملک خود را ثبت کنید</a></li>
+                        <li><a href="{% url 'blog:listing' %}">املاک جدید</a></li>
+                        <li><a href="{% url 'blog:special' %}">املاک ویژه</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4 footer-widget widget">
+                    <h3 class="widgettitle">ارتباط با ما</h3>
+
+                    <div>
+                        <i class="fa fa-phone"></i>
+                        <span class="ltr_text"><a href="tel:+989370780378">09370780378</a></span>
+                    </div>
+                    <hr>
+                    <div>
+                        <i class="fa fa-envelope"></i>
+                        <span><a href="mailto:m.aliahmadi.n@gmail.com">m.aliahmadi.n@gmail.com</a></span>
+                    </div>
+                    <hr>
+                    <span>ما را در شبکه های اجتماعی دنبال کنید</span>
+                    <div class="copyrights-col-right col-md-6 col-sm-6">
+                        <br>
+
+                        <div class="social-icons">
+                            <a href="https://wa.me/+989370780378" target="_blank"><i class="fa fa-whatsapp"></i></a>
+                            <a href="http://www.instagram.com/divar__amlak" target="_blank"><i
+                                    class="fa fa-instagram"></i></a>
+                        </div>
+                        <div id="nl-message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <footer class="site-footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="copyrights-col-left col-md-6 col-sm-6">
+                    <p>ارائه شده از <a href="tel:+989103415820">قالب آماده راست‌چین و بک اند کار علی موحدی </a></p>
+                </div>
+                <div class="copyrights-col-right col-md-6 col-sm-6">
+                    <div class="social-icons">
+
+                        <a href="https://wa.me/+989103415820" target="_blank"><i class="fa fa-whatsapp"></i></a>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End Site Footer -->
+    <a id="back-to-top"><i class="fa fa-angle-double-up"></i></a>
+</div>
+<script src='{% static "blog/js/jquery-2.0.0.min.js" %}'></script> <!-- Jquery Library Call -->
+<script src='{% static "blog/plugins/prettyphoto/js/prettyphoto.js" %}'></script> <!-- PrettyPhoto Plugin -->
+<script src='{% static "blog/plugins/owl-carousel/js/owl.carousel.min.js" %}'></script> <!-- Owl Carousel -->
+<script src='{% static "blog/plugins/flexslider/js/jquery.flexslider.js" %}'></script> <!-- FlexSlider -->
+<script src='{% static "blog/js/helper-plugins.js" %}'></script> <!-- Plugins -->
+<script src='{% static "blog/js/bootstrap.js" %}'></script> <!-- UI -->
+<script src='{% static "blog/js/waypoints.js" %}'></script> <!-- Waypoints -->
+<script src='{% static "blog/js/init.js" %}'></script> <!-- All Scripts -->
+<script src='{% static "blog/js/rtl.js" %}'></script> <!-- All Scripts -->
+</div>
+</body>
+</html>

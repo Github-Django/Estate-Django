@@ -1,0 +1,456 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+<!-- Site Showcase -->
+{% block main %}
+    <div class="site-showcase">
+    </div>
+    <!-- Start Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="page">
+                    <div class="row">
+                        <h2 class="hg" style="text-align: center;"><strong> ثبت آگهی در رفسنجان ملک
+
+                        </strong></h2>
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" role="alert">
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <br>
+                        <div class="col-md-12">
+                            <form enctype="multipart/form-data" method="POST">
+                                {% csrf_token %}
+                                <div class="block-heading" id="details">
+
+
+                                    <h4><span class="heading-icon"><i class="fa fa-home"></i></span>جزئیات ملک</h4>
+                                </div>
+                                <div class="padding-as25 margin-30 lgray-bg">
+                                    <div class="row">
+
+                                        <div class="col-xs-12 col-sm-8">
+                                            <label><strong>عنوان آگهی:</strong></label>
+                                            <input type="text" name="title" class="form-control" id="title"
+                                                   placeholder="در عنوان آگهی به موارد مهمی مانند نوع ملک، متراژ و محله اشاره کنید."
+                                                   required>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4 submit-contract-type">
+                                            <label><strong>نوع آگهی:</strong></label>
+
+                                            <select name="property_contract" class="form-control margin-0 selectpicker "
+                                                    id="property_contract"
+                                                    required>
+                                                <option selected="true"
+                                                        disabled="disabled">نوع آگهی
+                                                </option>
+                                                {% for key, value in contract_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label><strong>نوع ملک :</strong></label>
+
+                                            <select name="property_type" class="form-control margin-0 selectpicker "
+                                                    id="property_type"
+                                                    required>
+                                                <option selected="true"
+                                                        disabled="disabled">نوع ملک
+                                                </option>
+                                                {% for key, value in type_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>قیمت یا ودیعه :</strong></label>
+
+                                            <input type="number" min="0" name="unit_price" class="form-control"
+                                                   id="price" placeholder="(تومان)"
+                                                   required>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>تعداد اتاق خواب :</strong></label>
+
+                                            <select name="bedrooms" class="form-control"
+                                                    id="bedrooms" required>
+                                                <option selected="true"
+                                                        disabled="disabled">تعداد اتاق خواب
+                                                </option>
+                                                {% for key, value in bedroom_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>متراژ :</strong></label>
+
+                                            <input type="number" min="0" name="area" class="form-control selectpicker"
+                                                   id="area" placeholder="(متر)"
+                                                   required>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>زیربنا :</strong></label>
+                                            <input type="number" min="0" name="foundation"
+                                                   class="form-control selectpicker"
+                                                   id="foundation" required>
+                                        </div>
+
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>سال ساخت :</strong></label>
+
+                                            <input type="number" min="0" name="year_built"
+                                                   class="form-control selectpicker"
+                                                   id="year_built"
+                                                   required>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="conditions_contract"><strong>شرایط :</strong></label>
+                                            <select name="conditions_contract" class="form-control"
+                                                    id="conditions_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">شرایط
+                                                </option>
+                                                {% for key, value in conditions_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="conditions_contract"><strong>نوع سند :</strong></label>
+                                            <select name="document_contract" class="form-control"
+                                                    id="document_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">نوع سند
+                                                </option>
+                                                {% for key, value in document_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <br><br><br>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+
+
+                                            <label><strong>اجاره (ماهانه) :</strong></label>
+                                            <ul class="unordered">
+                                                <li>
+                                                    اگر نوع آگهی شما <span style="color: red">'برای فروش'</span> هست
+                                                    این
+                                                    دو
+                                                    فیلد را خالی بگذارید
+                                                </li>
+                                            </ul>
+                                            <div class="form-row field-Deposit2">
+                                                <div>
+                                                    <label for="Deposit2">اجاره:</label>
+                                                    <input type="number" name="Deposit2" value=""
+                                                           class="vIntegerField" id="Deposit2"
+                                                           placeholder="(تومان)">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <br><br><br>
+                                        <br><br>
+                                        <br><br>
+                                        <div class="form-row field-Deposit1">
+                                            <div class="checkbox-row">
+                                                <input type="checkbox" name="Deposit1" id="Deposit1"><label
+                                                    style="font-size: 15px" class="vCheckboxLabel" for="Deposit1"> رهن
+                                                کامل </label>
+                                            </div>
+                                        </div>
+                                        <br><br><br>
+                                    </div>
+                                    <br><br><br><br>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-8 submit-description">
+                                            <label><strong>توضیحات (حداقل ۳۰ کاراکتر) :</strong></label>
+                                            <ul class="unordered">
+                                                <li>
+                                                    در توضیحات آگهی به مواردی مانند شرایط اجاره، جزئیات و ویژگی‌های
+                                                    قابل
+                                                    توجه، امکانات ملک اشاره کنید.
+                                                </li>
+                                            </ul>
+{#<input name="description" id="description" type="text" style="width: 700px; height: 100px;" placeholder="توضیحات ملک" />#}
+                                            <textarea name="description" id="description"
+                                                      class="form-control margin-0"
+                                                      rows="6" placeholder="توضیحات ملک"></textarea>
+                                        </div>
+
+                                        <div class="col-md-5 col-sm-5 submit-image">
+                                            <br><br>
+
+                                            <label><strong>ارسال تصاویر:</strong></label>
+                                            <br>
+                                            <ul class="unordered">
+                                                <li>عکس‌هایی از فضای داخل و بیرون ملک اضافه کنید. آگهی‌های دارای عکس
+                                                    تا
+                                                    «۳ برابر» بیشتر توسط کاربران دیده می‌شوند.
+                                                </li>
+                                                <li>حداقل یک عکس را آپلود کنید</li>
+                                            </ul>
+                                            <br>
+                                            <input type="file" name="thumbnail">
+                                            <br>
+                                            <div class="image-placeholder">عکس کاور</div>
+
+                                            <div class="custom-file mt-3">
+                                                <input type="file" class="custom-file-input" id="photo_1"
+                                                       name="photo_1">
+                                                <br>
+                                            </div>
+                                            <div class="custom-file mt-3">
+                                                <input type="file" class="custom-file-input" id="photo_2"
+                                                       name="photo_2">
+                                                <br>
+                                            </div>
+                                            <div class="custom-file mt-3">
+                                                <input type="file" class="custom-file-input" id="photo_3"
+                                                       name="photo_3">
+                                                <br>
+                                            </div>
+                                            <div class="custom-file mt-3">
+                                                <input type="file" class="custom-file-input" id="photo_4"
+                                                       name="photo_4">
+                                                <br>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="block-heading" id="additionalinfo">
+                                    <h4><span class="heading-icon"><i class="fa fa-plus"></i></span>موقعیت ملک</h4>
+                                </div>
+                                <div class="padding-as25 margin-30 lgray-bg">
+
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>منطقه:</strong></label>
+
+                                            <input type="text" name="region" class="form-control" id="region"
+                                                   required>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-9">
+                                            <label><strong>آدرس محل دقیق:</strong></label>
+                                            <textarea type="text" name="address" class="form-control margin-0"
+                                                      id="address"
+                                                      rows="2" required></textarea>
+                                            <ul class="unordered">
+                                                <li>
+                                                    ابتدا محله ای را که ملکتان در آن قرار دارد بنویسید سپس شما می
+                                                    توانید محل دقیق ملک را مشخص کنید ، آدرس محل دقیق ملک
+                                                    شانس موفقیت آگهی شما را بیشتر می کند
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-heading" id="additionalinfo">
+                                    <h4><span class="heading-icon"><i class="fa fa-plus"></i></span>اطلاعات تماس
+                                    </h4>
+                                </div>
+                                <div class="padding-as25 margin-30 lgray-bg">
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>نام و نام خانوادگی :</strong></label>
+                                            <input type="text" name="full_name" class="form-control" id="full_name"
+                                                   required>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label><strong>آگهی دهنده :</strong></label>
+
+                                            <select name="advertiser" class="form-control"
+                                                    id="advertiser" required>
+                                                <option selected="true"
+                                                        disabled="disabled">آگهی دهنده
+                                                </option>
+                                                {% for key, value in advertiser_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>شماره تماس :</strong></label>
+
+                                            <input type="number" name="mobile" class="form-control" id="mobile"
+                                                   required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="block-heading" id="amenities">
+                                    <h4><span class="heading-icon"><i class="fa fa-star"></i></span>امکانات (دلخواه)
+                                    </h4>
+                                </div>
+                                <div class="padding-as25 margin-30 lgray-bg">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>جهت ساختمان :</strong></label>
+
+                                            <select name="direction_contract" class="form-control"
+                                                    id="direction_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">جهت ساختمان
+                                                </option>
+                                                {% for key, value in direction_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="conditions_contract"><strong>سیستم سرمایشی
+                                                :</strong></label>
+                                            <select name="cooling_contract" class="form-control"
+                                                    id="cooling_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">سیستم سرمایشی
+                                                </option>
+                                                {% for key, value in cooling_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="heating_contract"><strong>سیستم گرمایشی :</strong></label>
+                                            <select name="heating_contract" class="form-control"
+                                                    id="heating_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">سیستم گرمایشی
+                                                </option>
+                                                {% for key, value in heating_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-4">
+                                            <label><strong>تامین کننده آب گرم:</strong></label>
+
+                                            <select name="water_contract" class="form-control"
+                                                    id="water_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">تامین کننده آب گرم
+                                                </option>
+                                                {% for key, value in water_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="conditions_contract"><strong>جنس کف
+                                                :</strong></label>
+                                            <select name="covering_contract" class="form-control"
+                                                    id="covering_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">جنس کف
+                                                </option>
+                                                {% for key, value in covering_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-4 submit-property-type">
+                                            <label for="construction_contract"><strong>نوع ساخت :</strong></label>
+                                            <select name="construction_contract" class="form-control"
+                                                    id="construction_contract" required>
+                                                <option selected="true"
+                                                        disabled="disabled">نوع ساخت
+                                                </option>
+                                                {% for key, value in construction_choices.items %}
+                                                    <option value="{{ key }}"
+                                                            {% if key == values.state %}
+                                                            selected
+                                                            {% endif %}
+                                                    >{{ value }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="text-align-center" id="submit-property">
+                                    <button type="submit" name="submit" class="btn btn-primary btn-lg"><i
+                                            class="fa fa-check"></i> ثبت اطلاعات
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

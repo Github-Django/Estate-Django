@@ -1,0 +1,8 @@
+setup.cfg
+setup.py
+ghasedak/__init__.py
+ghasedak/ghasedak.py
+ghasedak.egg-info/PKG-INFO
+ghasedak.egg-info/SOURCES.txt
+ghasedak.egg-info/dependency_links.txt
+ghasedak.egg-info/top_level.txt

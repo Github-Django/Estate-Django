@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %}
+{% block main %}
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <!-- Start Page Header -->
+        <div class="parallax page-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>خطای 404</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+    </div>
+    <!-- Start Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="page error-404">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2 style="color: darkred;"><i class="fa fa-exclamation"></i> 404</h2>
+                            <div class="col-md-6">
+
+                                <p>متاسفانه صفحه مورد نظر شما یافت نشد. برای بازگشت به صفحه خانه از گزینه رو به رو
+                                    استفاده
+                                    کنید: <a class="btn btn-primary" href="{% url 'blog:home' %}">خانه</a>.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

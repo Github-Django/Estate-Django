@@ -1,0 +1,57 @@
+.property-featured-image img, .agent-featured-image img {
+    min-width: 100%;
+    height: 250px;
+}
+.item {
+    height: 700px;
+    width: 1045px;
+}
+
+.item2 {
+    height: 170px;
+    width: 300px;
+}
+
+.submit-property-type, .submit-contract-type, .submit-conditions-contract, .submit-image {
+    margin-bottom: 20px;
+}
+
+a img {
+    border: none;
+    height: 80px;
+}
+
+.btn.btn-danger {
+    margin: 1px 129px;
+}
+
+.errors {
+    color: red;
+}
+
+.home-text.text-center {
+    margin: 42px 0px 0px -15px;
+}
+
+.home-text.text {
+    margin: 76px -0px -0px 45px;
+}
+.btn.btn-primary.pull-right.btn-lg {
+    margin: 5px;
+}
+
+.agent-contacts.clearfix {
+
+    margin: -23px 107px 0px 267px;
+
+}
+
+.property-slider #property-thumbs {
+    position: relative;
+    background: #efefef;
+    padding: 16px;
+    height: 180px;
+}
+.checkbox-row {
+    margin: 0px 25px -60px 0px;
+}

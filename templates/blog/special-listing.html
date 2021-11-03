@@ -1,0 +1,115 @@
+{% extends 'blog/base.html' %}
+{% block title %}  ملک های مُفت |  {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block main %}
+    {% load base_tags %}
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <!-- Start Page Header -->
+        <div class="parallax page-header"
+             style="background-image:url('{% static 'blog/../../static/blog/images/pexels-kamran-gholami-3799176.jpg' %}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1> ملک مُفت </h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+    </div>
+    <!-- Start Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="col-md-12">
+                    <div class="block-heading">
+                        <h4><span class="heading-icon"><i class="fa fa-th-list"></i></span>
+                            ملک مُفت </h4>
+                    </div>
+                    <br>
+                    <div class="property-listing">
+                        {% if articles %}
+                            {% for article in articles %}
+                                <ul>
+                                    {% if article.Special == True %}
+                                        <li class="type-rent col-md-12">
+                                            <div class="col-md-4">
+                                                <a href="{% url 'blog:detail' article.slug %}"
+                                                   class="property-featured-image"> <img
+                                                        src="{{ article.thumbnail.url }}"
+                                                        alt=""> <span
+                                                        class="images-count"><i class="fa fa-picture-o"></i> </span>
+                                                    <span
+                                                            class="badges warning">{{ article.property_contract }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <div class="property-info">
+                                                    <div class="price">
+                                                        {% if article.Agree_unit == True %}
+                                                            <span>قیمت توافقی</span>
+                                                        {% else %}
+                                                            <span>{{ article.unit_price | intcomma:False }}</span>
+                                                            <strong>تومان</strong>
+                                                            {% if article.property_contract == 'اجاره' %}
+
+                                                                {% if article.Deposit1 == True %}
+                                                                    <span style="color: cyan;">رهن کامل</span>
+                                                                {% else %}
+                                                                    <span style="color: cyan"> {{ article.Deposit2|intcomma:False }}</span>
+
+                                                                    <strong style="color: cyan;">
+                                                                        تومان اجاره
+                                                                    </strong>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                    <h3>
+                                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
+                                                    </h3>
+                                                    <span class="location">{{ article.region }}</span>
+                                                    <p>{{ article.description |safe| truncatewords:20 }}</p>
+                                                    <br>
+                                                    <h3 class="label label-danger"
+                                                        style='font-size: 13px; border-radius: 5px;'> ملک مُفت </h3>
+                                                </div>
+                                                <div>
+                                                    <hr>
+                                                </div>
+                                                <div class="property-amenities clearfix">
+                                                    <span class="area"><strong>{{ article.area }}</strong>متر مربع</span>
+                                                    <span class="beds"><strong>{{ article.bedrooms }}</strong><i
+                                                            class="fa fa-bed" aria-hidden="true"></i></span>
+
+                                                    <span class="beds"><strong>{{ article.year_built }}</strong><i
+                                                            class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="beds"><strong>{{ article.foundation }}</strong><i
+                                                            class="fa fa-arrows-v"
+                                                            aria-hidden="true"> <span>    زیربنا   </span></i></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endfor %}
+                        {% else %}
+                            <h2 style="margin: 3px 350px 0px 10px"> ملکی برای نمایش وجود ندارد
+                            </h2>
+                            <hr>
+
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+
+

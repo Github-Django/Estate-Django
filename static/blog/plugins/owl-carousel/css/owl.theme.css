@@ -1,0 +1,38 @@
+.owl-alt-controls1 .owl-nav{
+	text-align: left;
+	position: absolute;
+	top: -57px;
+	left: -8px;
+	right: 0;
+}
+
+.owl-alt-controls1 .owl-nav div{
+	display: inline-block;
+	padding: 0 8px;
+}
+
+.owl-alt-controls1 .owl-nav div:hover i{
+	opacity: 0.75;
+}
+
+.owl-alt-controls .owl-nav{
+	text-align: left;
+	position: absolute;
+	top: -68px;
+	left: 12px;
+	right: 0;
+}
+
+.owl-alt-controls .owl-nav div{
+	display: inline-block;
+	padding: 0 10px;
+	margin-right: 6px;
+	background: #666;
+	opacity: 0.5;
+	color: #fff;
+	border-radius: 3px;
+}
+
+.owl-alt-controls .owl-nav div:hover{
+	opacity: 0.75;
+}

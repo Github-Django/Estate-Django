@@ -1,0 +1,82 @@
+{% extends 'blog/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block main %}
+
+    <!-- End Site Header -->
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <!-- Start Page Header -->
+        <div class="parallax page-header"
+             style="background-image:url('{% static 'blog/../../static/blog/images/pexels-burst-374603.jpg' %}');">
+            >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>ورود / ثبت نام</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+    </div>
+		<!-- Start Content -->
+		<div class="main" role="main">
+			<div id="content" class="content full">
+				<div class="container">
+					<div class="page">
+						<div class="row">
+							<div class="col-xs-12 col-sm-4">
+								
+							</div>
+							<div class="col-xs-12 col-md-4 col-sm-8 login-form">
+								 <h3>عضویت</h3>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{ message.tags }}" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form method="post">{% csrf_token %}
+
+
+                                <br>
+                                <strong> <span>شماره همراه :</span></strong>
+                                <br>
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i
+                                            class="fa fa-fw fa-mobile-phone"> </i> </span>
+                                    <input class="input-group input-group-addon form-control" type="number"
+                                           name="mobile" placeholder="Enter Mobile" required>
+                                </div>
+                                <ul class="unordered">
+                                    <li>
+                                        <span>لطفا برای ورود یا ثبت نام شماره موبایل خود را وارد کنید  </span>
+                                    </li>
+                                </ul>
+                                <br>
+                                <button type="submit" class="btn btn-primary">ارسال کد</button>
+                            </form>
+							</div>
+							<div class="col-xs-12 col-md-4 col-sm-8 register-form">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+

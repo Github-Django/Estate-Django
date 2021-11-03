@@ -1,0 +1,13 @@
+Metadata-Version: 1.1
+Name: ghasedak
+Version: 0.1.9
+Summary: Ghasedak sms webservice api wrapper for python.
+Home-page: http://github.com/ghasedakapi/ghasedak-python
+Author: Dariush Abbasi
+Author-email: poshtehani@gmail.com
+License: UNKNOWN
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent

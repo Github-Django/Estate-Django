@@ -1,0 +1,428 @@
+{% extends 'blog/base.html' %}
+{% block title %}  {{ object.title }} |  {% endblock %}
+{% load humanize %}
+{% load static %}
+{% block main %}
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <!-- Start Page Header -->
+        <div class="parallax page-header"
+             style="background-image:url('{% static 'blog/../../static/blog/images/page-header1.jpg' %}');">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>جزيیات ملک</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+    </div>
+    <!-- Start Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="single-property">
+                            <h2 class="page-title">{{ object.title }} <span class="location">{{ object.region }}</span>
+                            </h2>
+                            <div class="price">
+                                {% if article.Agree_unit == True %}
+                                    <span>قیمت توافقی</span>
+                                {% else %}
+                                    <span>{{ article.unit_price | intcomma:False }}</span>
+                                    <strong>تومان</strong>
+                                {% endif %}
+                            </div>
+                            <div class="price">
+                                {% if article.property_contract == 'اجاره' %}
+                                    {% if article.Deposit1 == True %}
+                                        <span style="color: whitesmoke;">رهن کامل</span>
+                                    {% else %}
+                                        <span> {{ article.Deposit2|intcomma:False }}</span>
+
+                                        <strong style="color: black;">
+                                            تومان اجاره
+                                        </strong>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="property-amenities clearfix">
+                                <span class="area"><strong>برای</strong><br
+                                        class="visible-xs">{{ object.property_contract }}</span>
+                                <span class="area"><strong>{{ object.area }}</strong><br
+                                        class="visible-xs">متر مربع</span>
+                                <span class="baths"><br
+                                        class="visible-xs">  نوع ملک  <strong> {{ object.property_type }} </strong> </span>
+                                <span class="beds"><strong>{{ object.bedrooms }}</strong><br
+                                        class="visible-xs">اتاق</span>
+                                <span>{{ object.jpublish | naturaltime }}<i
+                                        class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
+                            </div>
+                            <div class="property-slider">
+                                <div id="property-images" class="flexslider">
+                                    <ul class="slides">
+
+                                        <li class="item"><img src="{{ object.thumbnail.url }}"
+                                                               style="max-width: 100%;height:auto;" alt="">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_1.url }}"
+                                                               style="max-width: 100%;height:auto;"
+                                                              alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_2.url }}"
+                                                               style="max-width: 100%;height:auto;"
+                                                              alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_3.url }}"
+                                                               style="max-width: 100%;height:auto;"
+                                                              alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_4.url }}"
+                                                               style="max-width: 100%;height:auto;"
+                                                              alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+
+                                        {% for img in photos %}
+                                            <li class="item"><img
+                                                src="{{ img.photo.url }}"
+                                                 style="max-width: 100%;height:auto;">
+                                        {% endfor %}</li>
+                                    </ul>
+                                </div>
+                                <br>
+                                <div id="property-thumbs" class="flexslider">
+                                    <ul class="slides">
+                                        <li class="item"><img src="{{ object.thumbnail.url }}"
+                                                              style="height: 140px; width: 300px" alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_1.url }}"
+                                                              style="height: 140px; width: 300px" alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_2.url }}"
+                                                              style="height: 140px; width: 300px" alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_3.url }}"
+                                                              style="height: 140px; width: 300px" alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        <li class="item"><img src="{{ object.photo_4.url }}"
+                                                              style="height: 140px; width: 300px" alt="عکسی برای نمایش وجود ندارد">
+                                        </li>
+                                        {% for img in photos %}
+                                            <li class="item"><img src="{{ img.photo.url }}"
+                                                                  style="height: 170px; width: 300px"></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="tabs">
+                                <hr>
+                                <div id="amenities" class="tab-pane">
+                                    <div class="additional-amenities">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <h4>مشخصات کامل</h4>
+                                                <table class="table table-striped">
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            کد
+                                                            آگهی
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium; color: blue;">
+                                                            <strong>
+
+                                                                {{ object.code }} #
+                                                            </strong>
+                                                        </td>
+
+                                                        <td>
+                                                            نوع
+                                                            آگهی
+                                                        </td>
+
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.property_contract }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            متراژ
+                                                        </td>
+                                                        <th style="font-weight:950;// bold;font-size: medium;">
+                                                            <span>{{ object.area }} </span> <strong>
+                                                            متر </strong>
+                                                        </th>
+                                                        <td>
+                                                            زیربنا
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.foundation }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            نوع
+                                                            ملک
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.property_type }}</td>
+
+                                                        <td>
+                                                            نوع
+                                                            ساخت
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.construction_contract }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        {% if object.property_contract == 'اجاره' %}
+                                                            <th>
+                                                                ودیعه
+                                                            </th>
+                                                        {% else %}
+                                                            <th>
+                                                                قیمت
+                                                            </th>
+                                                        {% endif %}
+                                                        {% if article.Agree_unit == True %}
+                                                            <th style="font-weight:950;// bold;font-size: medium;">
+                                                                توافقی
+                                                            </th>
+                                                        {% else %}
+                                                            <th style="font-weight:950;// bold;font-size: medium;">
+                                                                <span>{{ object.unit_price | intcomma:False }} </span>
+                                                                <strong>
+                                                                    تومان</strong>
+                                                            </th>
+                                                            {% if object.property_contract == 'اجاره' %}
+                                                                <td>
+                                                                    اجاره
+                                                                </td>
+                                                                {% if object.Deposit1 == True %}
+                                                                    <td style="font-weight:950;// bold;font-size: medium;">
+                                                                        رهن کامل
+                                                                    </td>
+                                                                {% else %}
+                                                                    <td style="font-weight:950;// bold;font-size: medium;">
+                                                                        <span> {{ object.Deposit2|intcomma:False }}</span>
+
+                                                                        <strong>
+                                                                            تومان اجاره
+                                                                        </strong>
+                                                                    </td>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            تعداد اتاق
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.bedrooms }}</td>
+                                                        <td>
+                                                            سال
+                                                            ساخت
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.year_built }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            نوع
+                                                            سند
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.document_contract }}</td>
+
+                                                        <td>
+                                                            شرایط
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.conditions_contract }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            پارکینگ
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.Parking_lots }}</td>
+                                                        <td>
+                                                            طبقه
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.floor }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            سیستم سرمایشی
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.cooling_contract }}</td>
+                                                        <td>
+                                                            سیستم گرمایشی
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.heating_contract }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            جنس کف
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.covering_contract }}</td>
+
+                                                        <td>
+                                                            آب
+                                                            گرم
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;">{{ object.water_contract }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            جهت
+                                                            ساختمان
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.direction_contract }}</td>
+                                                        <td>
+                                                            نمای
+                                                            ساختمان
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.frontage_contract }}</td>
+
+
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            منطقه
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;"> {{ object.region }}</td>
+
+                                                        <td>
+                                                            تاریخ انتشار این ملک در سایت
+                                                        </td>
+                                                        <td style="font-weight:950;// bold;font-size: medium;">
+                                                            {{ object.publish | naturaltime }}
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {#                                <ul class="nav nav-tabs">#}
+                                {#                                    <li class="active"><a data-toggle="tab" href="#description"> توضیحات </a></li>#}
+                                {#                                    <li><a data-toggle="tab" href="#amenities"> امکانات </a></li>#}
+                                {#                                </ul>#}
+                                <hr>
+                                <div class="tab-content">
+                                    <div id="description" class="tab-pane active">
+                                        <blockquote>
+                                            <h3 class="label label-success">توضیحات</h3><br><br>
+
+                                            <p>{{ object.description|safe|striptags }}</p>
+                                            <hr>
+                                            <h2 class="label label-info">آدرس محل دقیق</h2><br><br>
+                                            <h4>{{ object.address }}</h4>
+                                        </blockquote>
+                                    </div>
+                                    <br>
+                                    <hr>
+                                </div>
+                                <h3> تماس با مشاوران رفسنجان ملک
+                                </h3>
+                                <div class="agent">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <img src="{{ object.thumbnail.url }}" style="height: 165px; width: 220px">
+                                        </div>
+                                        <div class="col-md-8">
+                                            <h3> برای اطلاعات بیشتر از ''{{ object.title }}'' با ما ارتباط بگیرید .
+                                            </h3>
+                                            <ul class="unordered">
+                                                <li>
+                                                    <h4>لطفا هنگام تماس با ما کد آگهی زیر را ذکر کنید
+
+                                                    </h4>
+                                                    <h4><strong> کد آگهی : {{ object.code }} </strong></h4>
+                                                </li>
+                                            </ul>
+
+                                            <br><br>
+                                            <div class="agent-contacts clearfix">
+                                                <a href="https://wa.me/+989370780378"
+                                                   class="btn btn-primary pull-right btn-lg">
+                                                    واتساپ
+                                                </a>
+                                                <a href="tel:+989370780378"
+                                                   class="btn btn-primary pull-right btn-lg">تماس
+                                                    با نمایندگان</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <!-- Start Related Properties -->
+                            <h3>املاک مرتبط</h3>
+                            <div class="property-grid">
+                                {% for tag in similar %}
+                                    <ul>
+                                        {% if tag.Special == True %}
+                                            <li class="col-md-4 col-sm-6 type-rent">
+                                                <div class="property-block">
+                                                    <a href="{% url 'blog:detail' tag.slug %}"
+                                                       class="property-featured-image">
+                                                        <img src="{{ tag.thumbnail.url }}" alt="">
+                                                        <span class="images-count"><i
+                                                                class="fa fa-picture-o"></i></span>
+                                                        <span class="badges">{{ tag.property_contract }}</span>
+                                                    </a>
+                                                    <div class="property-info">
+                                                        <h4>
+                                                            <a href="{% url 'blog:detail' tag.slug %}">{{ tag.title }}</a>
+                                                        </h4>
+                                                        <span class="location">{{ tag.region }}</span>
+                                                        <div class="price">
+                                                            {% if tag.Agree_unit == True %}
+                                                                <span>قیمت توافقی</span>
+                                                            {% else %}
+                                                                <span>{{ tag.unit_price | intcomma:False }}</span>
+                                                                <strong>تومان</strong>
+                                                            {% endif %}
+                                                            {% if tag.property_contract == 'اجاره' %}
+
+                                                                {% if tag.Deposit1 == True %}
+                                                                    <span style="color: cyan;">رهن کامل</span>
+                                                                {% else %}
+                                                                    <span style="color: cyan"> {{ tag.Deposit2|intcomma:False }}</span>
+
+                                                                    <strong style="color: cyan;">
+                                                                        تومان اجاره
+                                                                    </strong>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        {% if tag.Special == True %}
+                                                            <h3 class="label label-danger"
+                                                                style='font-size: 13px; border-radius: 5px;'> ملک
+                                                                مُفت </h3>
+                                                        {% endif %}
+                                                    </div>
+                                                    <div class="property-amenities clearfix">
+                                                        <span class="area"><strong>{{ tag.area }}</strong>متر مربع</span>
+                                                        <span class="beds"><strong>{{ tag.bedrooms }}</strong><i
+                                                                class="fa fa-bed" aria-hidden="true"></i></span>
+                                                        <span class="beds"><strong>{{ tag.year_built }}</strong><i
+                                                                class="fa fa-calendar"
+                                                                aria-hidden="true"></i></span>
+                                                        <span class="beds"><strong>{{ tag.foundation }}</strong><i
+                                                                class="fa fa-arrows-v"
+                                                                aria-hidden="true"> <span>  زیربنا  </span></i></span>
+
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        {% endif %}
+                                    </ul>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}

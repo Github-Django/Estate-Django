@@ -1,0 +1,46 @@
+{% extends 'blog/base.html' %}
+{% load widget_tweaks %}
+{% load static %}
+{% block main %}
+
+    <!-- End Site Header -->
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <!-- Start Page Header -->
+        <div class="parallax page-header"
+             style="background-image:url('{% static 'blog/../../static/blog/images/pexels-burst-374603.jpg' %}');">
+            >
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Page Header -->
+    </div>
+    <!-- Start Content -->
+    <div class="main" role="main">
+        <div id="content" class="content full">
+            <div class="container">
+                <div class="page">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-4 col-sm-8 register-form">
+                            <form method="post">{% csrf_token %}
+                                <br>
+                                <div class="col-md-12">
+                                    <blockquote>
+                                        <h2>آیا از حذف ملک خود مطمن هستید؟</h2>
+                                    </blockquote>
+                                </div>
+                                <br>
+                                <button type="submit"  style="font-size: large" class="btn btn-danger">حذف</button>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

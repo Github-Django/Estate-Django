@@ -1,0 +1,337 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% load humanize %}
+{% block main %}
+
+    <!-- Site Showcase -->
+    <div class="site-showcase">
+        <div class="slider-mask overlay-transparent"></div>
+
+        <!-- Start Hero Slider -->
+
+        <div class="hero-slider flexslider clearfix" data-autoplay="yes" data-pagination="no" data-arrows="yes"
+             data-style="fade" data-pause="yes">
+
+            <ul class="slides">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags }}" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+                <li class=" parallax"
+                    style="background-image:url({% static '/blog/images/pexels-kamran-gholami-3799176.jpg' %})">
+                    <div class="home-text text-center">
+                        <h1 style=" font-weight: bold; color: whitesmoke;">خرید ، فروش و اجاره ملک در رفسنجان</h1>
+                        <h4 style="color: whitesmoke;">سامانه هوشمند معاملات املاک و مستغلات در رفسنجان</h4>
+                    </div>
+
+                </li>
+                <li class="parallax" style="background-image:url({% static '/blog/images/pexels-burst-374603.jpg' %})">
+                    <div class="home-text text">
+                        <h1 style=" font-weight: bold; color: whitesmoke;">خرید ، فروش و اجاره ملک در رفسنجان</h1>
+                        <h4 style="color: whitesmoke;">سامانه هوشمند معاملات املاک و مستغلات در رفسنجان</h4>
+                    </div>
+                </li>
+            </ul>
+
+
+            <!-- End Hero Slider -->
+            <div class="container">
+
+            </div>
+        </div>
+    </div>
+    <div class="main" role="main">
+        <div class="spacer-40"></div>
+        <div id="featured-properties">
+            <div class="container">
+    <div class="site-search-module-inside">
+                        <form action="{% url 'blog:listing' %}">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <input type="text" name="search" class="form-control input-lg"
+                                               placeholder="دنبال چه چیزی هستید ؟" value="{{ values.keywords }}">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" class="btn btn-primary btn-block btn-lg"><i
+                                                class="fa fa-search"></i> جستجو
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label>حداقل قیمت (تومان)</label>
+                                    <input type="text" name="price_1" min="{{ min_price }}" max="{{ max_price }}"
+                                           class="form-control input-lg"
+                                           placeholder="قیمت موردنظر خود را وارد کنید">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>حداکثر قیمت (تومان)</label>
+                                    <input type="text" name="price_2" min="{{ min_price }}" max="{{ max_price }}"
+                                           class="form-control input-lg"
+                                           placeholder="قیمت موردنظر خود را وارد کنید">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>حداقل متراژ (متر)</label>
+                                    <input type="text" name="area_1" min="{{ min_area }}" max="{{ max_area }}"
+                                           class="form-control input-lg"
+                                           placeholder="متراژٰ موردنظر خود را وارد کنید">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>حداکثر متراژ (متر)</label>
+                                    <input type="text" name="area_2" min="{{ min_area }}" max="{{ max_area }}"
+                                           class="form-control input-lg"
+                                           placeholder="متراژٰ موردنظر خود را وارد کنید">
+                                </div>
+                            </div>
+                            <div style="display: none;">
+                                {{ filter.form.price }}
+                                {{ filter.form.create }}
+                            </div>
+                        </form>
+                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="block-heading">
+                            <h4><span class="heading-icon"><i class="fa fa-star"></i></span> <a
+                                    style="color: whitesmoke"
+                                    href="{% url 'blog:special' %}">برای مشاهده ی ملک مُفت بیشتر در اینجا کلیک
+                                کنید</a>
+                            </h4>
+                            <a href="{% url 'blog:special' %}" class="btn btn-primary btn-sm pull-right">مشاهده ملک
+                                های بیشتر <i class="fa fa-long-arrow-left"></i></a>
+                        </div>
+                        {% if articles %}
+
+                            <h1 class="hg" style="text-align: center;"><strong> پیشنهاد ویژه این هفته
+                            </strong></h1>
+                            <h5 style="text-align: center;">
+                                در پیشنهاد های ویژه <span
+                            > <a href="{% url 'blog:special' %}"
+                                 style="color: red;font-size: 22px;">  ' ملک مُفت '  </a></span>
+                                مورد
+                                نظر خودتو پیدا کن
+                            </h5>
+                            <br>
+                            <br>
+                            </div>
+                            </div>
+                            <div class="row">
+                            <div class="col-xs-12">
+                            {% for article in specials %}
+                                <ul>
+                                    {% if article.Special2 == True %}
+                                        <li class="col-md-4 col-sm-6 type-rent">
+                                            <div class="property-block">
+                                                <a href="{% url 'blog:detail' article.slug %}"
+                                                   class="property-featured-image">
+                                                    <img src="{{ article.thumbnail.url }}" alt="">
+                                                    <span class="images-count"><i
+                                                            class="fa fa-picture-o"></i></span>
+                                                    <span class="badges">{{ article.property_contract }}</span>
+                                                </a>
+                                                <div class="property-info">
+                                                    <h4>
+                                                        <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
+                                                    </h4>
+                                                    <span class="location">{{ article.region }}</span>
+                                                    <div class="price">
+                                                        {% if article.Agree_unit == True %}
+                                                            <span>قیمت توافقی</span>
+                                                        {% else %}
+                                                            <span>{{ article.unit_price | intcomma:False }}</span>
+                                                            <strong>تومان</strong>
+                                                            </div>
+                                                            <div class="price">
+                                                            {% if article.property_contract == 'اجاره' %}
+                                                                {% if article.Deposit1 == True %}
+                                                                    {#                                                                    <br><br>#}
+                                                                    <span style="color: cyan;">رهن کامل</span>
+                                                                {% else %}
+                                                                    <span style="color: cyan"> {{ article.Deposit2|intcomma:False }}</span>
+
+                                                                    <strong style="color: cyan;">
+                                                                        تومان اجاره
+                                                                    </strong>
+                                                                {% endif %}
+                                                            {% endif %}
+                                                        {% endif %}
+
+                                                        </div>
+                                                    <br>
+                                                    <br>
+                                                    {#                                                        {% if article.Special == True %}#}
+                                                    <h3 class="label label-danger"
+                                                        style='font-size: 13px; border-radius: 5px;'> ملک
+                                                        مُفت </h3>
+                                                    {#                                                        {% endif %}#}
+                                                </div>
+                                                <div class="property-amenities clearfix">
+                                                    <span class="area"><strong>{{ article.area }}</strong>متر مربع</span>
+                                                    <span class="beds"><strong>{{ article.bedrooms }}</strong><i
+                                                            class="fa fa-bed" aria-hidden="true"></i></span>
+
+                                                    <span class="beds"><strong>{{ article.year_built }}</strong><i
+                                                            class="fa fa-calendar" aria-hidden="true"></i></span>
+                                                    <span class="beds"><strong>{{ article.foundation }}</strong><i
+                                                            class="fa fa-arrows-v"
+                                                            aria-hidden="true"> <span>    زیربنا   </span></i></span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endfor %}
+                        {% else %}
+                            <h2 style="margin: 3px 350px 0px 10px"> ملکی برای نمایش وجود ندارد
+                            </h2>
+                            <hr>
+                        {% endif %}
+                        </div>
+                        </div>
+            </div>
+        </div>
+        <div class="spacer-40"></div>
+        <hr>
+        <div id="content" class="content full">
+            <div class="featured-blocks">
+                <div class="container">
+                    <div class="row">
+                        <h1 class="hg" style="text-align: center;"><strong>رفسنجان ملک گامی هوشمند در دنیای
+                            املاک </strong></h1>
+                        <h5 style="text-align: center;">به برخی از ویژگی های منحصر به فرد <span
+                                style="color: red;font-size: 18px;">  'رفسنجان ملک'  </span> دقت
+                            کنید</h5>
+                        <br>
+                        <div class="col-xs-12 col-sm-4 featured-block"><img
+                                src="{% static 'blog/images/buy-or-rent.jpg' %}"
+                                alt="Search Anywhere" class="img-thumbnail">
+                            <h3>خرید یا اجاره</h3>
+                            <p>رفسنجان ملک، سامانه جامع هوشمند املاک و مستغلات با استفاده از فناوری‌های نوین و بستر
+                                اینترنت به مالکین و خریداران ملک کمک می‌کند تا به آسانی و با سرعت، ملک موردنظر خود
+                                را
+                                آگهی کرده و به فروش برسانند. وب سایت رفسنجان ملک به دلیل آنلاین بودن خدمات،
+                                محدودیتی در ارائه خدمات در سراسر ایران ندارد ولی در فاز اول در رفسنجان شروع به سرویس
+                                دهی
+                                کرده است و در فازهای بعدی استان کرمان را پوشش خواهد داد.</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 featured-block"><img
+                                src="{% static '../../static/blog/images/Google-Buy-Buttons-618x412.jpg' %}"
+                                alt="Search Anywhere" class="img-thumbnail">
+                            <h3>از هرجا جستجو کنید</h3>
+                            <p>
+                                جستجوی سریع ملک
+                                در هـر زمــان و در هر مکانـی به آسانی جستجـو کنید</p>
+                        </div>
+                        <div class="col-xs-12 col-sm-4 featured-block"><img
+                                src="{% static '../../static/blog/images/friendly-agents.jpg' %}"
+                                alt="Friendly Agents" class="img-thumbnail">
+                            <h3>مشاوره</h3>
+                            <p>معامله ای شیرین با مشاوران رفسنجان ملک و معرفی بهترین موقعیت های خرید یا فروش، قدم به
+                                قدم
+                                همراهی مشتریان، مشاوره دقیق و لازم، کمترین دخالت مشتری در مشکلات انجام معاملات،
+                                ارائه
+                                سودهای بسیار در معاملات و ... تماماً توسط مشاورین رفسنجان ملک صورت خواهد گرفت.
+                                کافیست هم
+                                اکنون با ما تماس بگیرید.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="spacer-40"></div>
+        <div class="container">
+            <div class="row">
+                <div class="property-columns" id="latest-properties">
+                    <div class="col-md-12">
+                        <div class="block-heading">
+                            <h4><span class="heading-icon"><i class="fa fa-leaf"></i></span><a
+                                    href="{% url 'blog:listing' %}" style="color: whitesmoke">برای مشاهده ی بیشتر
+                                املاک جدید در اینجا کلیک
+                                کنید</a></h4>
+                            <a href="{% url 'blog:listing' %}" class="btn btn-primary btn-sm pull-right">مشاهده ملک
+                                های بیشتر <i class="fa fa-long-arrow-left"></i></a>
+                        </div>
+                    </div>                        {% if articles %}
+
+                    <h1 class="hg" style="text-align: center;"><strong><a href="{% url 'blog:listing' %}"> جدیدترین
+                        املاک</a>
+                    </strong></h1>
+                    <h5 style="text-align: center;">
+                        جدیدترین املاک ثبت شده را میتوانید مشاهده کنید
+                    </h5>
+                    <br>
+                    <br>
+
+                    {% for article in articles %}
+                        <ul>
+                            <li class="col-md-4 col-sm-6 type-rent">
+                                <div class="property-block">
+                                    <a href="{% url 'blog:detail' article.slug %}"
+                                       class="property-featured-image">
+                                        <img src="{{ article.thumbnail.url }}" alt="">
+                                        <span class="images-count"><i class="fa fa-picture-o"></i></span>
+                                        <span class="badges">{{ article.property_contract }}</span>
+                                    </a>
+                                    <div class="property-info">
+                                        <h4>
+                                            <a href="{% url 'blog:detail' article.slug %}">{{ article.title }}</a>
+                                        </h4>
+                                        <span class="location">{{ article.region }}</span>
+                                        <div class="price">
+                                            {% if article.Agree_unit == True %}
+                                                <span>قیمت توافقی</span>
+                                            {% else %}
+                                                <span>{{ article.unit_price | intcomma:False }}</span>
+                                                <strong>تومان</strong>
+                                                </div>
+                                                <div class="price">
+                                                {% if article.property_contract == 'اجاره' %}
+                                                    {% if article.Deposit1 == True %}
+                                                        <span style="color: cyan;">رهن کامل</span>
+                                                    {% else %}
+                                                        <span style="color: cyan"> {{ article.Deposit2|intcomma:False }}</span>
+
+                                                        <strong style="color: cyan;">
+                                                            تومان اجاره
+                                                        </strong>
+                                                    {% endif %}
+                                                {% endif %}
+                                            {% endif %}
+
+                                            </div>
+                                    </div>
+                                    <div class="property-amenities clearfix">
+                                        <span class="area"><strong>{{ article.area }}</strong>متر مربع</span>
+                                        <span class="beds"><strong>{{ article.bedrooms }}</strong><i
+                                                class="fa fa-bed" aria-hidden="true"></i></span>
+
+                                        <span class="beds"><strong>{{ article.year_built }}</strong><i
+                                                class="fa fa-calendar" aria-hidden="true"></i></span>
+                                        <span class="beds"><strong>{{ article.foundation }}</strong><i
+                                                class="fa fa-arrows-v"
+                                                aria-hidden="true"> <span>    زیربنا   </span></i></span></div>
+                                </div>
+                            </li>
+                        </ul>
+                    {% endfor %}
+                {% else %}
+                    <h2 style="margin: 3px 360px 0px 15px"> ملکی برای نمایش وجود ندارد
+                    </h2>
+                {% endif %}
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
