@@ -1,0 +1,22 @@
+# Django-Estate
+
+![Screenshot from 2022-06-20 18-49-06](https://user-images.githubusercontent.com/93652376/174639309-13fb8f92-d07b-4fe4-ac02-fe93a3be39f2.png)
+![Screenshot from 2022-06-20 20-13-48](https://user-images.githubusercontent.com/93652376/174639468-39444895-ae1c-4f86-a28e-63bf67317cd8.png)
+![Screenshot from 2022-06-20 20-13-52](https://user-images.githubusercontent.com/93652376/174639481-919328ac-ea7f-443a-ac4f-27884e21bce8.png)
+![Screenshot from 2022-06-20 20-13-55](https://user-images.githubusercontent.com/93652376/174639502-b01fe7da-583f-401c-9a0c-d42d27600b39.png)
+![Screenshot from 2022-06-20 20-13-56](https://user-images.githubusercontent.com/93652376/174639511-4b77a11e-6cbf-457a-973b-0020c0d98bc6.png)
+![Screenshot from 2022-06-20 20-14-01](https://user-images.githubusercontent.com/93652376/174639526-667140b4-2fc6-40e6-92f3-287878bfcaf9.png)
+![Screenshot from 2022-06-20 20-14-08](https://user-images.githubusercontent.com/93652376/174639564-75cea2c1-8910-4cd9-8e56-327a6a0baf3d.png)
+![Screenshot from 2022-06-20 20-14-23](https://user-images.githubusercontent.com/93652376/174639592-79c0a18f-e953-4593-b561-231b2ac20b2d.png)
+![Screenshot from 2022-06-20 20-18-34](https://user-images.githubusercontent.com/93652376/174639840-8bca6ab5-32b0-44c9-81c3-91b84940f02f.png)
+![Screenshot from 2022-06-20 20-18-39](https://user-images.githubusercontent.com/93652376/174639965-bfe7ce7a-e6fa-4131-901f-c6a6e8e389e9.png)
+![Screenshot from 2022-06-20 20-18-42](https://user-images.githubusercontent.com/93652376/174640009-aed8ab74-5fc5-4cd1-b806-3454fe82c79d.png)
+![Screenshot from 2022-06-20 20-18-47](https://user-images.githubusercontent.com/93652376/174640049-0d255191-aa0b-4702-8269-bcf3e3e67362.png)
+![Screenshot from 2022-06-20 20-18-54](https://user-images.githubusercontent.com/93652376/174640077-8b4e4ab5-9ebe-4ece-a0aa-75dc77e90208.png)
+![Screenshot from 2022-06-20 20-19-07](https://user-images.githubusercontent.com/93652376/174640116-a9b68149-a398-4c03-b4d9-21f0ba421b72.png)
+![Screenshot from 2022-06-20 20-20-32](https://user-images.githubusercontent.com/93652376/174640160-abc08839-3915-4421-b576-c105387a8bb4.png)
+![Screenshot from 2022-06-20 20-21-51](https://user-images.githubusercontent.com/93652376/174640185-4cd7429f-49f7-4a76-8012-27fa02e5bef7.png)
+![Screenshot from 2022-06-20 20-21-56](https://user-images.githubusercontent.com/93652376/174640220-6562d560-3fc6-4b7d-80d0-884e821325ce.png)
+![Screenshot from 2022-06-20 20-26-22](https://user-images.githubusercontent.com/93652376/174640303-cb7e9ead-669d-4b56-8ee6-fd4ec7b8ff1b.png)
+![Screenshot from 2022-06-20 20-27-23](https://user-images.githubusercontent.com/93652376/174640391-65cd356c-c0fc-4449-a4c5-f863e0cd0473.png)
+
